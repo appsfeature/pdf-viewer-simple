@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#343436</color>
+    <color name="colorPrimaryDark">#272729</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPdfBackground">@color/themeBackgroundCardColor</color>
+    <color name="colorPdfBackgroundDark">@color/themeBackgroundCardColor</color>
+    <color name="secondary_card_color">@color/themeBackgroundCardColor</color>
+    <color name="pdf_download_completed">#343436</color>
+    <color name="colorTextNoData">@color/themeHintColor</color>
+    <color name="background_page_count_color">#10ffffff</color>
+
+    <color name="pdf_viewer_background">@color/themeWindowBackground</color>
+
+</resources>

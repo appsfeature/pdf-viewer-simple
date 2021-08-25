@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bookmark">Bookmark</string>
+    <string name="bookmark_page">Bookmark Page</string>
+    <string name="take_screenshot">Take Screenshot</string>
+    <string name="full_screen">Full Screen</string>
+    <string name="all_bookmarks">All Bookmarks</string>
+    <string name="app_name">PDFViewer</string>
+    <string name="index_page">Index</string>
+    <string name="count">00/00</string>
+    <string name="share_page">Share Page</string>
+    <string name="print_page">Print</string>
+    <string name="pdf_views">%1$s views</string>
+    <string name="share_pdf">Share</string>
+
+</resources>

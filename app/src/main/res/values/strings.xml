@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">pdf-viewer</string>
+    <string name="ads_admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+
+    <integer name="url_min_app_version">242</integer>
+    <string name="url_public_short_host">https://topcoaching.page.link</string>
+    <string name="url_public_domain_host">https://topcoaching.in/</string>
+    <string name="url_public_domain_host_manifest">topcoaching.page.link</string>
+</resources>
