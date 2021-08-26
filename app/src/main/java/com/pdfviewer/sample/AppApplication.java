@@ -11,6 +11,7 @@ import com.pdfviewer.PDFViewer;
 
 public class AppApplication extends Application {
 
+    public static final String BASE_URL_PDF_DOWNLOAD = "https://katyayanacademy.com/erp/application/libraries/uploads/studymaterial/";
     private static AppApplication _instance;
 
     public static AppApplication getInstance() {
@@ -21,7 +22,11 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         _instance = this;
-        PDFViewer.getInstance().init(this);
+        PDFViewer.getInstance()
+                .setBaseUrl(BASE_URL_PDF_DOWNLOAD)
+                .setDisablePrint(true)
+                .setDisableShare(true)
+                .init(this);
         PDFViewer.setDownloadDirectory(this,"PDFViewerApp");
         initTheme();
     }

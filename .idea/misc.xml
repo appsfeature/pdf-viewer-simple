@@ -4,6 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/app/src/main/res/layout/activity_main.xml" value="0.14375" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/drawable/bg_pdf_download.xml" value="0.2911458333333333" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/drawable/default_scroll_handle_right.xml" value="0.2911458333333333" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_dialog_page_selection.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_item_history.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_item_index.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_main_downlaod.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_main_downlaod2.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/pdf_viewer_activity.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/layout/slot_page_item.xml" value="0.275" />
+        <entry key="..\:/Workspace/DroidHelios/pdf-viewer-simple/pdfviewer/src/main/res/menu/pdf_viewer_menu.xml" value="0.275" />
       </map>
     </option>
   </component>

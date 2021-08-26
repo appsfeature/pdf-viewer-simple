@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PDF_FILE_URL_3 = "https://ars.els-cdn.com/content/image/1-s2.0-S0968089612008322-mmc1.pdf";//20 mb file size
     private static final String PDF_FILE_URL_4 = "https://ars.els-cdn.com/content/image/1-s2.0-S0308814616314601-mmc1.pdf";//40 mb file size
     private static final String PDF_FILE_URL_5 = "https://ars.els-cdn.com/content/image/1-s2.0-S1525001616328027-mmc2.pdf";//100mb file size
-    private static final String PDF_FILE_NAME = "pdf";
+    private static final String PDF_FILE_NAME = "6df10173d82c32b47e851779e22a8bad.pdf";
     private static final String PDF_FILE_NAME2 = "sample_2";
     private static final String PDF_TITLE = "Sample Pdf File";
     private static final String PDF_TITLE2 = "Sample Pdf File 2";
@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                PDFViewer.openPdfDownloadActivity(MainActivity.this, PDF_TITLE, PDF_FILE_NAME, PDF_FILE_URL, true);
-                PDFViewer.openPdfDownloadActivity(MainActivity.this, 500, PDF_TITLE, PDF_FILE_NAME, PDF_PREFIX , PDF_FILE_URL, "Category 1");
+                String fileUrl = AppApplication.BASE_URL_PDF_DOWNLOAD + PDF_FILE_NAME;
+                PDFViewer.openPdfDownloadActivity(MainActivity.this, 500, PDF_TITLE, PDF_FILE_NAME, "" , fileUrl, "Category 1");
             }
         });
         (findViewById(R.id.btn_open2)).setOnClickListener(new View.OnClickListener() {

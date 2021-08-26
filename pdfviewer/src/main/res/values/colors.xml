@@ -13,5 +13,7 @@
     <color name="pdf_download_completed">#F2F2F2</color>
     <color name="pdf_viewer_background">#D9E0E2</color>
     <color name="pdf_color_history_indicator">#F3BD11</color>
+    <color name="pdf_color_side_indicator">@color/colorAccent</color>
+    <color name="pdf_color_side_indicator_text">#000000</color>
 
 </resources>

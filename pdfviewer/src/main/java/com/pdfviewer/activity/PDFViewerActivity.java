@@ -51,6 +51,7 @@ import com.pdfviewer.util.PDFCallback;
 import com.pdfviewer.util.PDFConstant;
 import com.pdfviewer.util.PDFDynamicShare;
 import com.pdfviewer.util.PDFFileUtil;
+import com.pdfviewer.util.PDFScrollHandle;
 import com.pdfviewer.util.PDFSupportPref;
 import com.pdfviewer.util.PdfUtil;
 import com.pdfviewer.util.SmoothSeekBar;
@@ -304,12 +305,12 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
         loadPage(seekBar.getProgress());
     }
 
-    private DefaultScrollHandle scrollHandler;
+    private PDFScrollHandle scrollHandler;
 
-    private DefaultScrollHandle getScrollHandler() {
+    private PDFScrollHandle getScrollHandler() {
         if(scrollHandler == null) {
-            scrollHandler = new DefaultScrollHandle(this);
-            scrollHandler.setTextColor(Color.BLACK);
+            scrollHandler = new PDFScrollHandle(this);
+            scrollHandler.setTextColor(ContextCompat.getColor(this, R.color.pdf_color_side_indicator_text));
         }
         return scrollHandler;
     }
@@ -339,6 +340,14 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
             menu_bookmark.setVisible(false);
             MenuItem menu_bookmark_add = menu.findItem(R.id.menu_bookmark_add);
             menu_bookmark_add.setVisible(false);
+        }
+        MenuItem menuPrint = menu.findItem(R.id.menu_print);
+        MenuItem menuShare = menu.findItem(R.id.menu_share);
+        if(PDFViewer.getInstance().isDisablePrint()){
+            menuPrint.setVisible(false);
+        }
+        if(PDFViewer.getInstance().isDisableShare()){
+            menuShare.setVisible(false);
         }
         return true;
     }

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/themeBackgroundCardColor" />
-    <stroke
-        android:width="2dp"
-        android:color="@color/colorPrimary" />
+
+    <solid android:color="@color/colorPrimary"/>
+ 
+
+    <corners android:radius="32dp"/>
+
+    <padding
+        android:top="2dp"
+        android:bottom="4dp"
+        android:left="8dp"
+        android:right="8dp"/>
 </shape>

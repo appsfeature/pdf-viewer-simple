@@ -33,6 +33,8 @@ public class PDFViewer {
     private boolean isDebugModeEnabled = false;
     private boolean isEnableViewCount = false;
     private String baseUrl;
+    private boolean isDisablePrint = false;
+    private boolean isDisableShare = false;
 
     private final ArrayList<PDFCallback.StatsListener> mStatsCallbacks = new ArrayList<>();
 
@@ -320,6 +322,24 @@ public class PDFViewer {
 
     public PDFViewer setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
+        return this;
+    }
+
+    public boolean isDisablePrint() {
+        return isDisablePrint;
+    }
+
+    public PDFViewer setDisablePrint(boolean disablePrint) {
+        isDisablePrint = disablePrint;
+        return this;
+    }
+
+    public boolean isDisableShare() {
+        return isDisableShare;
+    }
+
+    public PDFViewer setDisableShare(boolean disableShare) {
+        isDisableShare = disableShare;
         return this;
     }
 }
