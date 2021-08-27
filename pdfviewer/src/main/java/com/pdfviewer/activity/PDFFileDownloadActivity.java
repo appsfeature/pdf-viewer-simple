@@ -10,7 +10,6 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +34,11 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
 
     private String mFileUrl;
     private String mPdfFileName;
-    private LinearLayout btnDownload;
-    private LinearLayout ll_download;
+    private View btnDownload;
+    private View downloadProgress;
     private TextView tv_download_percentage;
     private DownloadManager downloadManager;
-    private View llDownloaderView;
+    private View downloadButton;
     private String mPdfTitle;
     private boolean isAutoDownload = false;
     private PDFModel pdfModel;
@@ -94,12 +93,12 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Download Book");
+            actionBar.setTitle("Download PDF");
         }
 
-        llDownloaderView = findViewById(R.id.ll_downloader);
+        downloadButton = findViewById(R.id.layout_download_button);
         btnDownload = findViewById(R.id.btnProgressBar);
-        ll_download = findViewById(R.id.ll_download);
+        downloadProgress = findViewById(R.id.layout_download_progress);
         tv_download_percentage = findViewById(R.id.tv_download_percentage);
 
 
@@ -128,7 +127,7 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
         if(mStatistics == null){
             mStatistics = TextUtils.isEmpty(pdfModel.getStatsJson()) ? "" : getUpdatedStatistics(pdfModel.getStatsJson());
         }
-        llDownloaderView.setVisibility(View.VISIBLE);
+        downloadButton.setVisibility(View.VISIBLE);
         downloadManager.downloadFile(pdfUrl, mStatistics);
     }
 
@@ -194,11 +193,11 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
     @Override
     public void onProgressManager(boolean isVisible) {
         if (isVisible) {
-            btnDownload.setVisibility(View.GONE);
-            ll_download.setVisibility(View.VISIBLE);
+            btnDownload.setVisibility(View.INVISIBLE);
+            downloadProgress.setVisibility(View.VISIBLE);
         } else {
             btnDownload.setVisibility(View.VISIBLE);
-            ll_download.setVisibility(View.GONE);
+            downloadProgress.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -227,7 +226,8 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
 
     @Override
     public void onFileDownloaded(File file, Uri fileUri, String ext, String type, Boolean isFileAlreadyDownloaded) {
-        llDownloaderView.setVisibility(View.GONE);
+//        downloadButton.setVisibility(View.GONE);
+        onProgressManager(true);
         openPdfFromUri(fileUri, isFileAlreadyDownloaded);
     }
 

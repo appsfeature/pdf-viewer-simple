@@ -72,6 +72,7 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
     private boolean isShowBookmarkDialog = false;
     private boolean isFileAlreadyDownloaded = false;
     private PDFDynamicShare dynamicShare;
+    private String title = "PDF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +91,19 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
                 BaseUtil.hideDialog();
             }
         });
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("PDF");
-        }
         initDataFromIntent();
+        setUpToolbar();
         Log.e("PDFViewerActivity", "called");
         PdfUtil.initBannerAd(this, findViewById(R.id.rl_ads));
+    }
+
+    private void setUpToolbar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            if (!TextUtils.isEmpty(title)) {
+                getSupportActionBar().setTitle(title);
+            }
+        }
     }
 
     private void initView() {
@@ -150,6 +157,9 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
                     finish();
                 }
                 isShowBookmarkDialog = bundle.getBoolean(PDFConstant.SHOW_BOOKMARK_DIALOG, false);
+            }
+            if (pdfModel != null && !TextUtils.isEmpty(pdfModel.getTitle())) {
+                title = pdfModel.getTitle();
             }
         } else {
             PdfUtil.showToast(this, PDFConstant.INVALID_PROPERTY);
@@ -571,7 +581,7 @@ public class PDFViewerActivity extends AppCompatActivity implements OnPageChange
     private void updatePageCount(int currentPage) {
         if (menuCount != null && pdfView != null) {
             int totalPageCount = pdfView.getPageCount();
-            menuCount.setTitle(getCurrentPage(currentPage) + "/" + totalPageCount);
+            menuCount.setTitle("(" + getCurrentPage(currentPage) + "/" + totalPageCount + ")");
             menuCount.setVisible(true);
         }
     }

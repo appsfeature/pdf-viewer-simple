@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PDF_FILE_URL_5 = "https://ars.els-cdn.com/content/image/1-s2.0-S1525001616328027-mmc2.pdf";//100mb file size
     private static final String PDF_FILE_NAME = "6df10173d82c32b47e851779e22a8bad.pdf";
     private static final String PDF_FILE_NAME2 = "sample_2";
-    private static final String PDF_TITLE = "Sample Pdf File";
+    private static final String PDF_TITLE = "Sample Pdf File with extra ordinary features";
     private static final String PDF_TITLE2 = "Sample Pdf File 2";
     private static final String PDF_PREFIX = "http://www.pdf995.com/samples/";
 //Large pdf file size 6Mb

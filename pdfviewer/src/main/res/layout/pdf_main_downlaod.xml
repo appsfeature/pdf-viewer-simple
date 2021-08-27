@@ -1,29 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/themeWindowBackground"
-    android:gravity="center"
+    android:background="@color/themeBackgroundCardColor"
+    android:gravity="center|top"
     android:orientation="vertical">
 
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_file_pdf"/>
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_file_pdf_download"/>
 
-    <LinearLayout
-        android:id="@+id/ll_downloader"
+    <RelativeLayout
+        android:id="@+id/layout_download_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center|top"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/btnProgressBar"
             android:layout_width="200dp"
             android:layout_height="45dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="5dp"
+            android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_pdf_download"
             android:gravity="center">
@@ -37,30 +37,31 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_download"
+        <RelativeLayout
+            android:id="@+id/layout_download_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
+            android:layout_centerInParent="true"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="invisible"
+            android:orientation="vertical">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:indeterminateDrawable="@drawable/bg_progress_custom" />
 
             <TextView
                 android:id="@+id/tv_download_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="0%"
-                android:textColor="#8BC34A"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Downloading....."
-                android:textColor="#4CAF50"
-                android:textStyle="bold" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/full_ad"
@@ -73,7 +74,7 @@
             android:background="@android:color/transparent"
             android:layout_height="60dp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll_ads_viwers"
         android:layout_width="match_parent"
