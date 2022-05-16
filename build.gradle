@@ -28,7 +28,7 @@ ext {
     fbs_library_version_analytics = '19.0.0'
     fbs_library_dynamic_links = '21.0.1'
     //personal
-    api_config = '1.7-alpha08'
+    api_config = '1.7-alpha09'
     helper_version = '1.8-alpha13'
 }
 
