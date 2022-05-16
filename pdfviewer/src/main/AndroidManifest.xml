@@ -9,7 +9,8 @@
 
     <application>
         <activity android:name=".activity.PDFViewerActivity"
-            android:theme="@style/AppTheme.PdfViewer" >
+            android:theme="@style/AppTheme.PdfViewer"
+            android:exported="true">
 
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
@@ -70,10 +71,12 @@
         </activity>
 
         <activity android:name=".activity.PDFBookmarkActivity"
-            android:theme="@style/AppTheme.PdfViewer"/>
+            android:theme="@style/AppTheme.PdfViewer"
+            android:exported="true"/>
 
         <activity android:name=".activity.PDFFileDownloadActivity"
-            android:theme="@style/AppTheme.PdfViewer" />
+            android:theme="@style/AppTheme.PdfViewer"
+            android:exported="true"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
