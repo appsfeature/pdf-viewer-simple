@@ -19,6 +19,7 @@ Add this to your project build.gradle
 
 #### Dependency
 [![](https://jitpack.io/v/org.bitbucket.android-dennislabs/pdf-viewer.svg)](https://jitpack.io/#org.bitbucket.android-dennislabs/pdf-viewer)
+[![](https://jitpack.io/v/org.bitbucket.android-dennislabs/ytplayer.svg)](https://jitpack.io/#org.bitbucket.android-dennislabs/ytplayer)
 ```gradle
 dependencies {
         implementation 'org.bitbucket.android-dennislabs:pdf-viewer:3.4'
