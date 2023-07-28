@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 19
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -21,9 +21,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
@@ -44,10 +45,10 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
     annotationProcessor "androidx.room:room-compiler:$rootProject.ext.room_version"
-    implementation "org.bitbucket.android-dennislabs:helper:$rootProject.ext.helper_version"
 
     implementation 'gun0912.ted:tedpermission:2.2.3'
-    implementation "org.bitbucket.droidhelios:api-config:$rootProject.ext.api_config"
+    implementation "com.github.appsfeature:api-config:$rootProject.ext.api_config"
+    implementation "com.github.appsfeature:helper:$rootProject.ext.helper_version"
 
     implementation "com.google.firebase:firebase-dynamic-links:$rootProject.ext.fbs_library_dynamic_links"
 }
