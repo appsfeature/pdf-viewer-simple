@@ -17,5 +17,5 @@ dependencyResolutionManagement {
         mavenLocal()
     }
 }
-rootProject.name='pdf-viewer'
+rootProject.name='pdf-viewer-simple'
 include ':app', ':pdfviewer'
