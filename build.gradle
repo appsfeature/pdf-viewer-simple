@@ -27,7 +27,7 @@ ext {
     fbs_library_dynamic_links = '21.0.1'
     //personal
     api_config = '1.1'
-    helper_version = '1.0'
+    helper_version = '2.1'
 }
 
 task clean(type: Delete) {
