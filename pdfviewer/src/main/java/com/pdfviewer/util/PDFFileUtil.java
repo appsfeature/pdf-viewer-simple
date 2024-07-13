@@ -15,7 +15,6 @@ import com.helper.task.TaskRunner;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
 import com.pdfviewer.network.DownloadManager;
-import com.pdfviewer.task.TaskMigrateScopedStorage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -128,24 +127,6 @@ public class PDFFileUtil {
             result = null;
         }
         return result;
-    }
-
-    public static void initStorageFileMigrationOnApiLevel29(Context context) {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
-            if(!PDFSupportPref.isStorageMigrationCompleted(context)) {
-                TaskRunner.getInstance().executeAsync(new Callable<Void>() {
-                    @Override
-                    public Void call() throws Exception {
-                        copyFiles(context);
-                        PDFSupportPref.setStorageMigrationCompleted(context, true);
-                        new TaskMigrateScopedStorage(context).execute();
-                        return null;
-                    }
-                });
-            }
-        }else {
-            PDFSupportPref.setStorageMigrationCompleted(context, true);
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.config.config.ConfigManager;
+import com.config.util.ConfigUtil;
 import com.helper.task.TaskRunner;
 import com.helper.util.BaseUtil;
 import com.pdfviewer.activity.PDFBookmarkActivity;
@@ -35,13 +37,16 @@ public class PDFViewer {
     private String baseUrl;
     private boolean isDisablePrint = false;
     private boolean isDisableShare = false;
+    private String encDataKey;
+
 
     private final ArrayList<PDFCallback.StatsListener> mStatsCallbacks = new ArrayList<>();
 
     private PDFViewer() { }
 
     public void init(Context context) {
-        PDFFileUtil.initStorageFileMigrationOnApiLevel29(context);
+        ConfigManager.getInstance(context, ConfigUtil.getSecurityCode(context), isDebugModeEnabled)
+                .setEncDataKey(encDataKey);
     }
 
     public static PDFViewer getInstance() {
@@ -207,10 +212,10 @@ public class PDFViewer {
     }
 
     private static boolean validateLibrary(Context context) {
-        if(!PDFSupportPref.isStorageMigrationCompleted(context)){
-            BaseUtil.showToast(context, PDFConstant.ERROR_PDF_VIEWER_INITIALIZATION);
-            return false;
-        }
+//        if(!PDFSupportPref.isStorageMigrationCompleted(context)){
+//            BaseUtil.showToast(context, PDFConstant.ERROR_PDF_VIEWER_INITIALIZATION);
+//            return false;
+//        }
         return true;
     }
 
@@ -340,6 +345,15 @@ public class PDFViewer {
 
     public PDFViewer setDisableShare(boolean disableShare) {
         isDisableShare = disableShare;
+        return this;
+    }
+
+    public String getEncDataKey() {
+        return encDataKey;
+    }
+
+    public PDFViewer setEncDataKey(String encDataKey) {
+        this.encDataKey = encDataKey;
         return this;
     }
 }

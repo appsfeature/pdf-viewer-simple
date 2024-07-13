@@ -16,7 +16,6 @@ public class PDFSupportPref {
     public static final String HEADER_AUTH_ENC = "Authorization-Enc";
     public static final String ENABLE_FILE_STREAM_PATH = "enable_file_stream_path";
     public static final String PDF_STATS_DATA = "pdf_stats_data";
-    public static final String STORAGE_MIGRATION_COMPLETED = "storage_migration_completed";
 
     private static SharedPreferences sharedPreferences;
 
@@ -69,14 +68,6 @@ public class PDFSupportPref {
 
     public static boolean isEnableFileStreamPath(Context context) {
         return getSharedPreferenceObj(context).getBoolean(ENABLE_FILE_STREAM_PATH,true);
-    }
-
-    public static void setStorageMigrationCompleted(Context context, boolean value) {
-        getSharedPreferenceObj(context).edit().putBoolean(STORAGE_MIGRATION_COMPLETED, value).apply();
-    }
-
-    public static boolean isStorageMigrationCompleted(Context context) {
-        return getSharedPreferenceObj(context).getBoolean(STORAGE_MIGRATION_COMPLETED,false);
     }
 
     public static void setDownloadDirectory(Context context, String value) {

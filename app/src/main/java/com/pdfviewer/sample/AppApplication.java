@@ -23,6 +23,7 @@ public class AppApplication extends BaseApplication {
         super.onCreate();
         _instance = this;
         PDFViewer.getInstance()
+                .setDebugModeEnabled(isDebugMode())
                 .setBaseUrl(BASE_URL_PDF_DOWNLOAD)
                 .setDisablePrint(true)
                 .setDisableShare(true)
