@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.config.config.ConfigManager;
-import com.config.util.ConfigUtil;
 import com.helper.util.DayNightPreference;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.util.PDFCallback;
@@ -42,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ConfigManager configManager = ConfigManager.getInstance(this, ConfigUtil.getSecurityCode(this), BuildConfig.DEBUG);
-        configManager.setEnableConfigManager(false);
-        configManager.loadConfig();
 
         (findViewById(R.id.btn_open)).setOnClickListener(new View.OnClickListener() {
             @Override

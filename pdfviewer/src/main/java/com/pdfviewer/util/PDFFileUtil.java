@@ -14,7 +14,6 @@ import androidx.core.content.FileProvider;
 import com.helper.task.TaskRunner;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
-import com.pdfviewer.network.DownloadManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -65,11 +64,8 @@ public class PDFFileUtil {
     public static void deleteFile(Context context, String fileName) {
         try {
             if (!TextUtils.isEmpty(fileName)) {
-                File apkStorage = null;
-                if (DownloadManager.isSDCardPresent()) {
-//                    apkStorage = new File(PDFFileUtil.getFileStoreDirectory(context) + "/" + PDFSupportPref.getDownloadDirectory(context));
-                    apkStorage = PDFFileUtil.getFileStoreDirectory(context);
-                }
+                File apkStorage = PDFFileUtil.getFileStoreDirectory(context);
+
                 if (apkStorage != null && apkStorage.exists()) {
                     File outputFile = new File(apkStorage, fileName);
                     if (outputFile.exists()) {
@@ -86,11 +82,7 @@ public class PDFFileUtil {
         boolean isFileExixts = false;
         try {
             if (!TextUtils.isEmpty(fileName)) {
-                File apkStorage = null;
-                if (DownloadManager.isSDCardPresent()) {
-//                    apkStorage = new File(PDFFileUtil.getFileStoreDirectory(context) + "/" + PDFSupportPref.getDownloadDirectory(context));
-                    apkStorage = PDFFileUtil.getFileStoreDirectory(context);
-                }
+                File apkStorage = PDFFileUtil.getFileStoreDirectory(context);
                 if (apkStorage != null && apkStorage.exists()) {
                     File outputFile = new File(apkStorage, fileName);
                     isFileExixts = outputFile.exists();

@@ -40,10 +40,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
     implementation project(path: ':pdfviewer')
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'gun0912.ted:tedpermission:2.2.2'
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
 
-    implementation "com.github.appsfeature:api-config:$rootProject.ext.api_config"
+    implementation "com.github.appsfeature:api-config-lite:$rootProject.ext.config_lite_version"
     implementation "com.github.appsfeature:helper:$rootProject.ext.helper_version"
     implementation "org.bitbucket.appsfeature:core:$rootProject.ext.core_version"
 }

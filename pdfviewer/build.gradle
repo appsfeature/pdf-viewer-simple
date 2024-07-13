@@ -52,7 +52,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
     annotationProcessor "androidx.room:room-compiler:$rootProject.ext.room_version"
 
-    implementation "com.github.appsfeature:api-config:$rootProject.ext.api_config"
+    implementation "com.github.appsfeature:api-config-lite:$rootProject.ext.config_lite_version"
     implementation "com.github.appsfeature:helper:$rootProject.ext.helper_version"
     implementation "org.bitbucket.appsfeature:core:$rootProject.ext.core_version"
 
@@ -64,7 +64,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.appsfeature'
             artifactId = 'pdfviewer'
-            version = '1.30'
+            version = '1.31'
 
             afterEvaluate {
                 from components.release

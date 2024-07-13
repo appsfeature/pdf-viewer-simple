@@ -1,5 +1,6 @@
 package com.pdfviewer.sample;
 
+import com.configlite.ConfigManager;
 import com.helper.application.BaseApplication;
 import com.pdfviewer.PDFViewer;
 
@@ -22,12 +23,13 @@ public class AppApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         _instance = this;
+        ConfigManager.getInstance()
+                .setDebugMode(isDebugMode());
         PDFViewer.getInstance()
                 .setDebugModeEnabled(isDebugMode())
                 .setBaseUrl(BASE_URL_PDF_DOWNLOAD)
                 .setDisablePrint(true)
-                .setDisableShare(true)
-                .init(this);
+                .setDisableShare(true);
         PDFViewer.setDownloadDirectory(this,"PDFViewerApp");
     }
 

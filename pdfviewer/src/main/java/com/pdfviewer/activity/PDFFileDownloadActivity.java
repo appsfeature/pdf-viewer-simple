@@ -17,11 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+import com.configlite.network.download.DownloadManager;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
 import com.pdfviewer.analytics.BaseAnalyticsActivity;
 import com.pdfviewer.model.PDFModel;
-import com.pdfviewer.network.DownloadManager;
 import com.pdfviewer.util.PDFConstant;
 import com.pdfviewer.util.PDFFileUtil;
 import com.pdfviewer.util.PdfUtil;
@@ -49,6 +49,7 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pdf_main_downlaod);
         downloadManager = new DownloadManager(this);
+        downloadManager.setBaseDirectory(PDFFileUtil.getFileStoreDirectory(this));
         PdfUtil.initBannerAd(this, findViewById(R.id.adViewtop));
         init();
         getDataFromIntent();
@@ -75,9 +76,9 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
                     mPdfFileName = PDFFileUtil.getFileNameFromUrl(pdfModel.getPdfUrl());
                 }
                 if ( !TextUtils.isEmpty(pdfModel.getPdfBaseUrlPrefix()) ) {
-                    downloadManager.setEndPoint( pdfModel.getPdfBaseUrlPrefix() );
+                    downloadManager.setBaseUrl(pdfModel.getPdfBaseUrlPrefix() );
                 }
-                downloadManager.loadFileIfExists(mPdfFileName);
+                downloadManager.loadFileIfExists(this, mPdfFileName);
             } else {
                 PdfUtil.showToast(this, PDFConstant.INVALID_PROPERTY);
                 finish();
@@ -128,7 +129,7 @@ public class PDFFileDownloadActivity extends BaseAnalyticsActivity implements Do
             mStatistics = TextUtils.isEmpty(pdfModel.getStatsJson()) ? "" : getUpdatedStatistics(pdfModel.getStatsJson());
         }
         downloadButton.setVisibility(View.VISIBLE);
-        downloadManager.downloadFile(pdfUrl, mStatistics);
+        downloadManager.downloadFile(this, pdfUrl);
     }
 
     private void openPdfFromUri(Uri uri, Boolean isFileAlreadyDownloaded) {

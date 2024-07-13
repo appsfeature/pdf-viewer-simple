@@ -23,7 +23,7 @@ ext {
 
     fbs_library_dynamic_links = '22.1.0'
     //personal
-    api_config = '1.2'
+    config_lite_version = '2.0-alpha02'
     core_version = '1.2'
     helper_version = '2.5-alpha01'
 }

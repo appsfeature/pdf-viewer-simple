@@ -5,8 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.config.config.ConfigManager;
-import com.config.util.ConfigUtil;
+import com.configlite.ConfigManager;
 import com.helper.task.TaskRunner;
 import com.helper.util.BaseUtil;
 import com.pdfviewer.activity.PDFBookmarkActivity;
@@ -43,12 +42,7 @@ public class PDFViewer {
     private final ArrayList<PDFCallback.StatsListener> mStatsCallbacks = new ArrayList<>();
 
     private PDFViewer() { }
-
-    public void init(Context context) {
-        ConfigManager.getInstance(context, ConfigUtil.getSecurityCode(context), isDebugModeEnabled)
-                .setEncDataKey(encDataKey);
-    }
-
+ 
     public static PDFViewer getInstance() {
         if (sSoleInstance == null) {
             synchronized (PDFViewer.class) {
