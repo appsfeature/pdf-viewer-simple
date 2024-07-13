@@ -36,13 +36,12 @@ public class PDFViewer {
     private String baseUrl;
     private boolean isDisablePrint = false;
     private boolean isDisableShare = false;
-    private String encDataKey;
 
 
     private final ArrayList<PDFCallback.StatsListener> mStatsCallbacks = new ArrayList<>();
 
     private PDFViewer() { }
- 
+
     public static PDFViewer getInstance() {
         if (sSoleInstance == null) {
             synchronized (PDFViewer.class) {
@@ -339,15 +338,6 @@ public class PDFViewer {
 
     public PDFViewer setDisableShare(boolean disableShare) {
         isDisableShare = disableShare;
-        return this;
-    }
-
-    public String getEncDataKey() {
-        return encDataKey;
-    }
-
-    public PDFViewer setEncDataKey(String encDataKey) {
-        this.encDataKey = encDataKey;
         return this;
     }
 }
