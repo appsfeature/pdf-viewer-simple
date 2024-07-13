@@ -1,29 +1,17 @@
 package com.pdfviewer.util;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.CancellationSignal;
 import android.os.Environment;
 import android.os.FileUtils;
-import android.os.ParcelFileDescriptor;
-import android.print.PageRange;
-import android.print.PrintAttributes;
-import android.print.PrintDocumentAdapter;
-import android.print.PrintDocumentInfo;
-import android.print.PrintManager;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
 import com.helper.task.TaskRunner;
-import com.helper.util.Logger;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
 import com.pdfviewer.network.DownloadManager;
@@ -31,11 +19,8 @@ import com.pdfviewer.task.TaskMigrateScopedStorage;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -191,44 +176,18 @@ public class PDFFileUtil {
     }
 
     public static File getFileStoreDirectory(Context context) {
-        if (isSupportLegacyExternalStorage()) {
-            final String filePath = Environment.getExternalStorageDirectory() + "/" + PDFSupportPref.getDownloadDirectory(context);
-            return new File(filePath);
+        if (PDFViewer.isEnableFileStreamPath(context)) {
+            return context.getFilesDir();
         } else {
-            if (PDFViewer.isEnableFileStreamPath(context)) {
-                return context.getFilesDir();
-            } else {
-                return context.getExternalFilesDir("");
-            }
+            return context.getExternalFilesDir("");
         }
     }
-
-    public static boolean isSupportLegacyExternalStorage() {
-//        return Build.VERSION.SDK_INT < Build.VERSION_CODES.R;
-        return Build.VERSION.SDK_INT < 29;
-    }
-
     public static File getFile(Context context, String fileName) {
-        if (isSupportLegacyExternalStorage()) {
+        if (PDFViewer.isEnableFileStreamPath(context)) {
+            return context.getFileStreamPath(fileName);//Check openFileOutput outputStream in DownloadManager
+        } else {
             return new File(getFileStoreDirectory(context), fileName);
-        } else {
-            if (PDFViewer.isEnableFileStreamPath(context)) {
-                return context.getFileStreamPath(fileName);//Check openFileOutput outputStream in DownloadManager
-            } else {
-                return new File(getFileStoreDirectory(context), fileName);
-            }
         }
-    }
-
-    public static boolean shouldAskPermissions(Context context) {
-        if (context != null && isSupportLegacyExternalStorage()) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-                return context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED;
-            }
-        } else {
-            return false;
-        }
-        return false;
     }
 
     public static Uri getUriFromFile(Context context, File file) {

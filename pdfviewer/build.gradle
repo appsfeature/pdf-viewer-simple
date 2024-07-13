@@ -10,6 +10,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -35,9 +36,9 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.ext.material"
     implementation "androidx.recyclerview:recyclerview:$rootProject.ext.recyclerview"
     implementation "androidx.cardview:cardview:$rootProject.ext.cardview"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 //    implementation 'com.github.barteksc:android-pdf-viewer:1.6.0'
@@ -45,8 +46,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
     annotationProcessor "androidx.room:room-compiler:$rootProject.ext.room_version"
-
-    implementation 'gun0912.ted:tedpermission:2.2.3'
+ 
     implementation "com.github.appsfeature:api-config:$rootProject.ext.api_config"
     implementation "com.github.appsfeature:helper:$rootProject.ext.helper_version"
 

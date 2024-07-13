@@ -1,6 +1,5 @@
 package com.pdfviewer.network;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,19 +13,12 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
-import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
 import com.config.config.ApiInterface;
-import com.config.config.ConfigConstant;
 import com.config.config.ConfigManager;
-import com.config.config.ConfigPreferences;
 import com.config.network.download.ConfigDownloadListener;
-import com.config.util.ConfigUtil;
-import com.config.util.Logger;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
 import com.pdfviewer.util.PDFFileUtil;
@@ -34,11 +26,9 @@ import com.pdfviewer.util.PDFSupportPref;
 import com.pdfviewer.util.PDFTaskRunner;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +43,6 @@ import retrofit2.Response;
 
 public class DownloadManager {
 
-    //    private static final String DOWNLOAD_DIRECTORY = PDFViewer.DownloadDirectory;
     private final Progress progress;
     private Context context;
     private String endPoint = "";
@@ -86,11 +75,7 @@ public class DownloadManager {
             return;
         }
         this.fileName = fileName;
-        if (PDFFileUtil.shouldAskPermissions(context)) {
-            askPermissions();
-        } else {
-            afterPermissionCode();
-        }
+        startFileDownload();
     }
 
 //    private DownloadFileFromURL downloadFileAsyncTask;
@@ -250,11 +235,7 @@ public class DownloadManager {
 //                long fileSizeDownloaded = 0;
 
                 inputStream = body.byteStream();
-                if (PDFFileUtil.isSupportLegacyExternalStorage()) {
-                    outputStream = new FileOutputStream(futureStudioIconFile);
-                } else {
-                    outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-                }
+                outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
 
                 while (true) {
                     int read = inputStream.read(fileReader);
@@ -302,200 +283,13 @@ public class DownloadManager {
         }
     }
 
-//    private class DownloadFileFromURL extends AsyncTask<String, Integer, String> {
-//
-//        private boolean isCanceled = false;
-//
-//        private ResponseBody body;
-//
-//        public DownloadFileFromURL(ResponseBody body) {
-//            this.body = body;
-//        }
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            progress.onProgressManager(true);
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            new DeleteFileTask(fileName, null).execute(context);
-//            isCanceled = true;
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... f_url) {
-//            boolean isCompleteDownload = writeResponseBodyToDisk(new Handler(), body , 0);
-//            return isCompleteDownload ? "success" : "failure";
-//        }
-//
-//        public void onProgressUpdateFile(int i) {
-//            publishProgress(i);
-//        }
-//
-//        protected void onProgressUpdate(Integer... pro) {
-//            // setting progress percentage
-//            progress.onProgressUpdate(pro[0]);
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            if (progress != null) {
-//                progress.onProgressManager(false);
-//                if (!isCanceled) {
-//                    if (result.equalsIgnoreCase("success")) {
-//                        downloadFinished();
-//                    } else {
-//                        progress.onDownloadingError(new Exception(result));
-//                    }
-//                } else {
-//                    progress.onDownloadingCanceled();
-//                }
-//            }
-//        }
-//    }
-/*
-    private class DownloadFileFromURL extends AsyncTask<String, Integer, String> {
-
-        private boolean isCanceled = false;
-
-        private ResponseBody body;
-
-        public DownloadFileFromURL(ResponseBody body) {
-            this.body = body;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progress.onProgressManager(true);
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            new DeleteFileTask(fileName, null).execute(context);
-            isCanceled = true;
-        }
-
-        @Override
-        protected String doInBackground(String... f_url) {
-            int count;
-            try {
-                URL url = new URL(f_url[0]);
-
-                File apkStorage = null;
-                if (isSDCardPresent()) {
-                    apkStorage = PDFFileUtil.getFileStoreDirectory(context);
-                }
-                //If File is not present create directory
-                if (apkStorage != null && !apkStorage.exists()) {
-                    apkStorage.mkdir();
-                    // Log.e(TAG, "Directory Created.");
-                }
-                File outputFile = new File(apkStorage, fileName);//Create Output file in Main File
-                //Create New File if not present
-                if (!outputFile.exists()) {
-                    outputFile.createNewFile();
-                }
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-                if ( context != null ){
-                    String auth = PDFSupportPref.getHeaderAuth(context);
-                    String authEnc = PDFSupportPref.getHeaderAuthEnc(context);
-                    if ( !TextUtils.isEmpty( auth ) ){
-                        connection.setRequestProperty( PDFSupportPref.HEADER_AUTH , auth );
-                    }
-                    if ( !TextUtils.isEmpty( authEnc ) ){
-                        connection.setRequestProperty( PDFSupportPref.HEADER_AUTH_ENC , authEnc );
-                    }
-                }
-
-                connection.connect();
-                int lengthOfFile = connection.getContentLength();
-                // loadFileIfExists the file
-                InputStream input = new BufferedInputStream(url.openStream(), 8192);
-                // Output stream
-                OutputStream output;
-                if (PDFFileUtil.isSupportLegacyExternalStorage()) {
-                    output = new FileOutputStream(outputFile);
-                } else {
-                    output = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-                }
-                byte[] data = new byte[1024];
-                long total = 0;
-                while ((count = input.read(data)) != -1) {
-                    total += count;
-                    publishProgress((int) ((total * 100) / lengthOfFile));
-                    output.write(data, 0, count);
-                }
-                output.flush();
-                output.close();
-                input.close();
-                connection.disconnect();
-            } catch (Exception e) {
-                //Log.e("Error: ", e.getMessage());
-                return "FileName:-" + fileName + e.toString();
-            }
-
-            return "success";
-        }
-
-        protected void onProgressUpdate(Integer... pro) {
-            // setting progress percentage
-            progress.onProgressUpdate(pro[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (progress != null) {
-                progress.onProgressManager(false);
-                if (!isCanceled) {
-                    if (result.equalsIgnoreCase("success")) {
-                        downloadFinished();
-                    } else {
-                        progress.onDownloadingError(new Exception(result));
-                    }
-                } else {
-                    progress.onDownloadingCanceled();
-                }
-            }
-        }
-    }*/
-
 
     public static boolean isSDCardPresent() {
         return Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED);
     }
 
-
-    public void askPermissions() {
-        TedPermission.with(context)
-                .setPermissionListener(permissionlistener)
-                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .check();
-    }
-
-    private PermissionListener permissionlistener = new PermissionListener() {
-        @Override
-        public void onPermissionGranted() {
-            afterPermissionCode();
-        }
-
-        @Override
-        public void onPermissionDenied(List<String> deniedPermissions) {
-            Toast.makeText(context, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-        }
-    };
-
-
-    private void afterPermissionCode() {
-//        String filePath = Environment.getExternalStorageDirectory() + "/" + PDFSupportPref.getDownloadDirectory(context) + "/" + fileName;
-//        File file = new File(filePath);
+    private void startFileDownload() {
         if (checkFileIsCompleteDownloaded(fileName)) {
             progress.onDownloadedFileStatus(true);
             downloadFinished(true);
