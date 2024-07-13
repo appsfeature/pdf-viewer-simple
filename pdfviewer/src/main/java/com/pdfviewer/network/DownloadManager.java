@@ -58,7 +58,9 @@ public class DownloadManager {
         this.progress = (Progress) context;
         this.setEndPoint(PDFViewer.getInstance().getBaseUrl());
         if (ConfigManager.getInstance() != null) {
-            ConfigManager.getInstance().setDownloadListener(new ConfigDownloadListener() {
+            ConfigManager.getInstance()
+                    .setDebugMode(PDFViewer.getInstance().isDebugModeEnabled())
+                    .setDownloadListener(new ConfigDownloadListener() {
                 @Override
                 public void onProgressUpdate(int mProgress) {
                     if(progress != null){

@@ -3,12 +3,13 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    namespace 'com.pdfviewer.sample'
+    compileSdk 34
 
     defaultConfig {
         applicationId "gk.currentaffairs.india"
-        minSdk 19
-        targetSdk 33
+        minSdk 25
+        targetSdk 34
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -22,10 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
 }
@@ -34,9 +38,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation project(path: ':pdfviewer')
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'gun0912.ted:tedpermission:2.2.2'
@@ -44,4 +45,5 @@ dependencies {
 
     implementation "com.github.appsfeature:api-config:$rootProject.ext.api_config"
     implementation "com.github.appsfeature:helper:$rootProject.ext.helper_version"
+    implementation "org.bitbucket.appsfeature:core:$rootProject.ext.core_version"
 }

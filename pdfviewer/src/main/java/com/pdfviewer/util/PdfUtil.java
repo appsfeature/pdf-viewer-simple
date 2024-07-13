@@ -27,7 +27,6 @@ import androidx.core.content.FileProvider;
 
 import com.helper.util.BaseUtil;
 import com.helper.util.Logger;
-import com.pdfviewer.BuildConfig;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.R;
 import com.pdfviewer.model.PDFModel;

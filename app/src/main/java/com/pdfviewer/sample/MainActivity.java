@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.config.config.ConfigManager;
 import com.config.util.ConfigUtil;
+import com.helper.util.DayNightPreference;
 import com.pdfviewer.PDFViewer;
 import com.pdfviewer.util.PDFCallback;
 
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppApplication.getInstance().setIsNightModeEnabled(MainActivity.this, isChecked);
+               DayNightPreference.setNightMode(MainActivity.this, isChecked);
             }
         });
 
