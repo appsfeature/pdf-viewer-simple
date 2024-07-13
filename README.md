@@ -1,4 +1,4 @@
-# pdf-viewer  
+# pdf-viewer    
 
 #### Library size is : Kb
   
@@ -18,11 +18,10 @@ allprojects {
 Add this to your project build.gradle
 
 #### Dependency
-[![](https://jitpack.io/v/org.bitbucket.android-dennislabs/pdf-viewer.svg)](https://jitpack.io/#org.bitbucket.android-dennislabs/pdf-viewer)
-[![](https://jitpack.io/v/org.bitbucket.android-dennislabs/ytplayer.svg)](https://jitpack.io/#org.bitbucket.android-dennislabs/ytplayer)
+[![](https://jitpack.io/v/appsfeature/pdf-viewer-simple.svg)](https://jitpack.io/#appsfeature/pdf-viewer-simple)
 ```gradle
 dependencies {
-        implementation 'org.bitbucket.android-dennislabs:pdf-viewer:3.4'
+        implementation 'com.github.appsfeature:pdf-viewer:1.02'
 }
 ```
 
